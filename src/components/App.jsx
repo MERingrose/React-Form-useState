@@ -8,29 +8,10 @@ function App() {
   });
 
   function updateInput(event) {
-    const newValue = event.target.value;
-    const targetName = event.target.name;
+    const { name, value } = event.target;
 
     setContact((previousName) => {
-      if (targetName === "fName") {
-        return {
-          fName: newValue,
-          lName: previousName.lName,
-          email: previousName.email
-        };
-      } else if (targetName === "lName") {
-        return {
-          fName: previousName.fName,
-          lName: newValue,
-          email: previousName.email
-        };
-      } else {
-        return {
-          fName: previousName.fName,
-          lName: previousName.lName,
-          email: newValue
-        };
-      }
+      return { ...previousName, [name]: value };
     });
   }
 
